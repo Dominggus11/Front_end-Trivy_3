@@ -1,10 +1,12 @@
 import React from "react";
-
+import Beranda from "./Component/Class/Beranda";
+import Home from "./Component/Functional/Home";
 
 function App () {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="App">
+      <Home />
+      <Beranda />
     </div>
   )
 }
