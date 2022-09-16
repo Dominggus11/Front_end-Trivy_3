@@ -5,12 +5,10 @@ import "./CSS/Blog.css";
 function Home() {
   return (
     <div className="Home">
-      <Produk 
-      stok = '10'
-      nama = 'Mackbook 2022'
-      harga = 'Rp. 27.000.000'
-      status = "Tersedia"
-      />
+      <Produk stok = '10' nama = 'Mackbook 2022' harga = 'Rp. 27.000.000' status = "Tersedia"/>
+      <Produk stok = '10' nama = 'Mackbook 2022' harga = 'Rp. 23.000.000' status = "Tersedia"/>
+      <Produk stok = '10' nama = 'Mackbook 2022' harga = 'Rp. 21.000.000' status = "Tersedia" />
+      <Produk stok = '10' nama = 'Mackbook 2022' harga = 'Rp. 27.000.000' status = "Tersedia"/>
       {/* <Blog
         tanggal="16 September 2022"
         judul="Trivy Misconfig"
