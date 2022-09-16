@@ -1,12 +1,26 @@
 import React from "react";
-import './Home.css'
-function Home () {
-    return (
-        <div className="Home"> 
-            <h1> Welcome To Project Trivy v.3 </h1>
-            <h1> Develop By Roy Dominggus Andornov Malau</h1>
-        </div>
-    )
+import Blog from "./Blog";
+import "./CSS/Blog.css";
+function Home() {
+  return (
+    <div className="Home">
+      <Blog
+        tanggal="16 September 2022"
+        judul="Trivy Misconfig"
+        summary="my project is Trivy Misconfig"
+      />
+      <Blog
+        tanggal="17 September 2022"
+        judul="Trivy Misconfig"
+        summary="my project is Trivy Misconfig"
+      />
+      <Blog
+        tanggal="18 September 2022"
+        judul="Trivy Misconfig"
+        summary="my project is Trivy Misconfig"
+      />
+    </div>
+  );
 }
 
 export default Home;
