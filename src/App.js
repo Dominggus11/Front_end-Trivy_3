@@ -1,10 +1,11 @@
 import React from "react";
-import Home from "./Component/Functional/Home";
+import Parent from "./Component/Class/Parent";
+
 
 function App () {
   return (
     <div className="App">
-      <Home />
+      <Parent />
     </div>
   )
 }
