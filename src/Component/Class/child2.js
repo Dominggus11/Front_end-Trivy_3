@@ -7,9 +7,15 @@ export default class Child2 extends Component {
             
         }
     }
+    Jumlah = 1;
   render() {
     return (
-      <div>child2</div>
+      <div>
+        <h2>Child Komponen 2</h2>
+        Stok Produk : {this.props.stok}
+        <br></br>
+        <button onClick={()=>this.props.fungsi(this.Jumlah)}>Beli</button>
+      </div>
     )
   }
 }
