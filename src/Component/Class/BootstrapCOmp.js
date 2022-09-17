@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Alert } from "bootstrap";
+import { Alert, UncontrolledAlert, Button } from "reactstrap";
 
-export default class BootstrapCOmp extends Component {
+class BootstrapCOmp extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,8 +9,18 @@ export default class BootstrapCOmp extends Component {
   render() {
     return (
       <div>
-        <Alert color="primary">This is a primary alert — check it out!</Alert>
+        <Alert clolor="primary">Primary Alert</Alert>
+        <Alert color="warning">Warning Alert</Alert>
+        <Alert color="danger">Danger ALert</Alert>
+        <Alert color="info">Info Alert</Alert>
+        <Alert>What</Alert>
+        <UncontrolledAlert color="info">Alert</UncontrolledAlert>
+        <Button color="primary">Primary</Button>
+        {' '}
+        <Button color="primary">Primary</Button>
+        <p>Hello Botstrap</p> 
       </div>
     );
   }
 }
+export default BootstrapCOmp;
