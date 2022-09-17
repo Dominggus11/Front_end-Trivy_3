@@ -7,7 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText,
 } from "reactstrap";
 
 function NavbarComp(props) {
@@ -27,8 +26,10 @@ function NavbarComp(props) {
             <NavItem>
               <NavLink href="/about">About</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/contact">Contact</NavLink>
+            </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
     </div>
