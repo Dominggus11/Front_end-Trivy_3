@@ -1,13 +1,11 @@
 import React from "react";
-import BootstrapCOmp from "./Component/Class/BootstrapCOmp";
-
-// import Parent from "./Component/Class/Parent";
+import Parent from "./Component/Class/Parent";
 
 
 function App () {
   return (
     <div className="App">
-      <BootstrapCOmp />
+      <Parent />
     </div>
   )
 }
