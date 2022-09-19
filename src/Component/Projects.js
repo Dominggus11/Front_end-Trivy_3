@@ -7,21 +7,23 @@ const client = axios.create({
 
 function TableProjects() {
   const [projects, setProjects] = React.useState(null);
-  const RowProject = projects.map((project) => {
-    return (
-      <tr>
-        <td>{project.ID}</td>
-        <td>{project.projectname}</td>
-      </tr>
-    );
-  });
+  
 
   React.useEffect(() => {
     client.get("").then((response) => {
       setProjects(response.data.data);
     });
   }, []);
+ 
   if (!projects) return "No Post";
+   const RowProject = projects.map((project) => {
+    return (
+      <tr>
+        <td >{project.ID}</td>
+        <td>{project.projectname}</td>
+      </tr>
+    );
+  });
   return (
     <div>
       <table className="table table-stripped">
@@ -34,11 +36,11 @@ function TableProjects() {
         </thead>
         <tbody>{RowProject}</tbody>
       </table>
-      <ul>
+      {/* <ul>
         {projects.map((project) => (
           <li key={project.ID}>{project.projectname}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
