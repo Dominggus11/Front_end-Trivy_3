@@ -1,37 +1,71 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
+import './App.css'
+import { Button } from 'reactstrap';
+
+const client =  axios.create({
+  baseURL : "https://guarded-dusk-41374.herokuapp.com/Project"
+});
 function App() {
-  const [articles, setArticles] = useState([]);
+  const [project, setproject] = React.useState(null);
+  const [error, setError] = React.useState(null);
 
-  async function fetchArticlesHandler(){
-    const response = await fetch('http://localhost:8081');
-    let data = await response.json();
+  React.useEffect(() => {
+    client.get("/3").then((response) =>{
+      setproject(response.data.data);
+    }).catch(error => {
+      setError(error);
+    });
+    
+  },[]);
 
-    data = data => {
-        return {
-          Developer: data.Developer,
-          Project: data.Project
-        };
-    };
-
-    setArticles(data);
+  function createproject() {
+    client
+    .post( {
+      projectname : "Project V6"
+    })
+    .then((response)=>{
+      setproject(response.data.data);
+    });
   }
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  function putproject() {
+    client
+    .put(`/4`, {
+      projectname : "Rdam"
+    })
+    .then((response)=>{
+      setproject(response.data.data);
+    });
+  }
 
-  const loadData = async () => {
-    const response = await axios.get('http://localhost:8081');
-    setArticles(response.data);
-  };
+  function deleteproject() {
+    client
+    .delete(`/1`)
+    .then((response)=>{
+      setproject(response.data.data);
+    });
+  }
 
-  return (
-    <div>{articles?.Developer}-{articles?.Project}</div>
-  );
+  if (error) return `Error : ${error.message}`;
+  if (!project) return "No Post"
+  
+
+
+   return (
+    <div className='App'>
+      <h1 >Trivy Misconfig</h1>
+      <p>ID Project : {project.ID}</p>
+      <p>Nama Project :{project.projectname}</p>
+      <Button color='primary' onClick={createproject}>Create project</Button>
+      <br></br>
+      <br></br>
+      <Button color='success' onClick={putproject}>Update project</Button>
+      <br></br>
+      <br></br>
+      <Button color='danger' onClick={deleteproject}>Delete project</Button>
+    </div>
+  )
 }
 
 export default App;
-
-
