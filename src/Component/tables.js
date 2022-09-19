@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { Button } from "reactstrap";
 
 const client = axios.create({
   baseURL: "https://guarded-dusk-41374.herokuapp.com/Projects"
 });
 
-function TableProjects() {
+function TableProjects(props) {
   const [projects, setProjects] = React.useState(null);
   
 
@@ -14,13 +15,22 @@ function TableProjects() {
       setProjects(response.data.data);
     });
   }, []);
- 
+  var i = 1
   if (!projects) return "No Post";
    const RowProject = projects.map((project) => {
     return (
-      <tr>
-        <td >{project.ID}</td>
+      <tr key={project.ID}>
+        <td >{i++}</td>
         <td>{project.projectname}</td>
+        <td>
+          <Button onClick={() => props.BtnUpdate("apa",project.ID)} color="primary">Update</Button>
+          {' '}
+          <Button onClick={()=> props.BtnShow(project.ID)} color="warning">Show</Button>
+          {' '}
+          <Button onClick={()=>props.BtnDelete(project.ID)} color="danger">Delete</Button>
+          
+          
+        </td>
       </tr>
     );
   });

@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import './App.css'
-import { Button } from 'reactstrap';
-import TableProjects from './Component/Projects';
-
+import TableProjects from './Component/tables';
+import BtnCreate from './Component/create';
+const baseURL = "https://guarded-dusk-41374.herokuapp.com/Projects"
 const client =  axios.create({
   baseURL : "https://guarded-dusk-41374.herokuapp.com/Project"
 });
@@ -12,7 +12,7 @@ function App() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    client.get("/3").then((response) =>{
+    axios.get(baseURL).then((response) =>{
       setproject(response.data.data);
     }).catch(error => {
       setError(error);
@@ -20,34 +20,49 @@ function App() {
     
   },[]);
 
-  function createproject() {
+  function Createproject($name) {
     client
-    .post( {
-      projectname : "Project V6"
+    .post(``, {
+      projectname : $name
     })
     .then((response)=>{
       setproject(response.data.data);
     });
+    
   }
 
-  function putproject() {
+  function Putproject($name,$id) {
     client
-    .put(`/4`, {
-      projectname : "Rdam"
+    .put(`/`+$id, {
+      projectname : $name
     })
     .then((response)=>{
       setproject(response.data.data);
     });
+    // window.location.reload();
   }
 
-  function deleteproject() {
+  function Deleteproject($id) {
     client
-    .delete(`/1`)
+    .delete(`/`+$id)
     .then((response)=>{
       setproject(response.data.data);
     });
+    // window.location.reload();
   }
 
+  function GetProject($id) {
+    client
+    .get(`/`+$id)
+    .then((response)=>{
+      setproject(response.data.data);
+    });
+    // window.location.reload();
+  }
+  function Reload(_) {
+    window.location.reload();
+  }
+  
   if (error) return `Error : ${error.message}`;
   if (!project) return "No Post"
   
@@ -55,17 +70,16 @@ function App() {
 
    return (
     <div className='App'>
-      <h1 >Trivy Misconfig</h1>
-      <p>ID Project : {project.ID}</p>
-      <p>Nama Project :{project.projectname}</p>
-      <TableProjects/>
-      <Button color='primary' onClick={createproject}>Create project</Button>
-      <br></br>
-      <br></br>
-      <Button color='success' onClick={putproject}>Update project</Button>
-      <br></br>
-      <br></br>
-      <Button color='danger' onClick={deleteproject}>Delete project</Button>
+      <h1 color=''>Trivy Misconfig</h1>
+      <BtnCreate Btncreate = {Createproject}/>
+      <TableProjects 
+        BtnUpdate = {Putproject} 
+        BtnDelete = {Deleteproject} 
+        BtnShow = {GetProject} 
+        Refresh = {Reload}
+        
+      />
+     
     </div>
   )
 }

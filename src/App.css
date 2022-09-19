@@ -1,11 +1,18 @@
 .App {
   text-align: center;
-  width: auto;
+  width: 80%;
   height: 700px;
   margin: auto;
 }
 
 h1{
   color: coral;
+}
+
+.btnCreate{
+  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-right: 10px;
+  float: right;
 }
 
