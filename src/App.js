@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import './App.css'
 import { Button } from 'reactstrap';
+import TableProjects from './Component/Projects';
 
 const client =  axios.create({
   baseURL : "https://guarded-dusk-41374.herokuapp.com/Project"
@@ -57,6 +58,7 @@ function App() {
       <h1 >Trivy Misconfig</h1>
       <p>ID Project : {project.ID}</p>
       <p>Nama Project :{project.projectname}</p>
+      <TableProjects/>
       <Button color='primary' onClick={createproject}>Create project</Button>
       <br></br>
       <br></br>
