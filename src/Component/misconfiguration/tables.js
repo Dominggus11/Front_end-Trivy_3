@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import { Button } from "reactstrap";
 
+
 const client = axios.create({
-  baseURL: "https://guarded-dusk-41374.herokuapp.com/Projects"
+  baseURL : "http://localhost:8080/project"
 });
 
 function TableProjects(props) {
   const [projects, setProjects] = React.useState(null);
-  
+  // const handleDelete = id
 
   React.useEffect(() => {
     client.get("").then((response) => {
@@ -23,13 +24,12 @@ function TableProjects(props) {
         <td >{i++}</td>
         <td>{project.projectname}</td>
         <td>
-          <Button onClick={() => props.BtnUpdate("apa",project.ID)} color="primary">Update</Button>
+          <Button onClick={() => props.BtnUpdate("yap",project.ID)} color="primary">Update</Button>
           {' '}
           <Button onClick={()=> props.BtnShow(project.ID)} color="warning">Show</Button>
           {' '}
-          <Button onClick={()=>props.BtnDelete(project.ID)} color="danger">Delete</Button>
-          
-          
+          {/* <Button onClick={()=>props.BtnDelete(project.ID)} color="danger">Delete</Button> */}
+          <Button onClick={()=> (window.confirm('Yakin ingin menghapus Project ini ? ') )}color="danger">Delete</Button>  
         </td>
       </tr>
     );

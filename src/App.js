@@ -1,18 +1,21 @@
 import React from 'react'
 import axios from 'axios'
 import './App.css'
-import TableProjects from './Component/tables';
-import BtnCreate from './Component/create';
-const baseURL = "https://guarded-dusk-41374.herokuapp.com/Projects"
+import TableProjects from './Component/misconfiguration/tables';
+import BtnCreate from './Component/misconfiguration/create';
+import Header from './Component/Header/header';
 const client =  axios.create({
-  baseURL : "https://guarded-dusk-41374.herokuapp.com/Project"
+  // baseURL : "http://localhost:8080/project"
+  baseURL : "http://localhost:8080/project"
 });
 function App() {
   const [project, setproject] = React.useState(null);
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    axios.get(baseURL).then((response) =>{
+    client
+    .get(``)
+    .then((response) =>{
       setproject(response.data.data);
     }).catch(error => {
       setError(error);
@@ -27,6 +30,7 @@ function App() {
     })
     .then((response)=>{
       setproject(response.data.data);
+      window.location.reload();
     });
     
   }
@@ -47,8 +51,8 @@ function App() {
     .delete(`/`+$id)
     .then((response)=>{
       setproject(response.data.data);
+      window.location.reload();
     });
-    // window.location.reload();
   }
 
   function GetProject($id) {
@@ -56,29 +60,26 @@ function App() {
     .get(`/`+$id)
     .then((response)=>{
       setproject(response.data.data);
+      console.log($id)
     });
     // window.location.reload();
   }
-  function Reload(_) {
+  function Reload() {
     window.location.reload();
   }
   
   if (error) return `Error : ${error.message}`;
   if (!project) return "No Post"
-  
-
-
    return (
     <div className='App'>
-      <h1 color=''>Trivy Misconfig</h1>
-      <BtnCreate Btncreate = {Createproject}/>
+      <Header />
+      {/* <BtnCreate Btncreate = {Createproject}/>
       <TableProjects 
         BtnUpdate = {Putproject} 
         BtnDelete = {Deleteproject} 
         BtnShow = {GetProject} 
         Refresh = {Reload}
-        
-      />
+      /> */}
      
     </div>
   )
